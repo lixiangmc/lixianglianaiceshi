@@ -71,16 +71,27 @@
     position:relative;
     background:
       linear-gradient(180deg,rgba(250,246,241,0) 50%,rgba(74,31,38,.55) 100%),
-      url('assets/xiaohongshu-cover.jpg') center/cover no-repeat;
+      url('assets/cover-bg.jpg') center/cover no-repeat;
     color:var(--ink);
     justify-content:flex-end;
     padding:0 28px 50px;
   }
-  .home-tag{display:none}
-  .home-title{display:none}
+  .home-tag{
+    font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+    color:var(--wine);margin-bottom:12px;font-weight:500;
+    text-shadow:0 1px 6px rgba(255,255,255,.6);
+  }
+  .home-title{
+    font-family:'Noto Serif SC',serif;
+    font-size:28px;font-weight:900;line-height:1.2;
+    margin-bottom:10px;letter-spacing:.02em;
+    color:var(--wine);
+    text-shadow:0 1px 8px rgba(255,255,255,.7);
+  }
+  .home-title em{font-style:normal;color:var(--wine)}
   .home-sub{
-    font-size:15px;line-height:1.8;color:#fff;
-    max-width:340px;margin-bottom:28px;font-weight:400;
+    font-size:14px;line-height:1.8;color:#fff;
+    max-width:340px;margin-bottom:24px;font-weight:400;
     text-shadow:0 1px 6px rgba(43,26,32,.5);
   }
   .btn-primary{
@@ -300,8 +311,8 @@
 <!-- ===== 视图：首页 ===== -->
 <section id="view-home" class="view">
   <div class="home-tag">Love Personality Test</div>
-  <h1 class="home-title">你是哪一种<br><em>恋爱人格</em>？</h1>
-  <p class="home-sub">20道题，看清你在爱里的样子。<br>是飞蛾扑火，还是静水流深？<br>测完就知道。</p>
+  <h1 class="home-title">你是哪一种恋人</h1>
+  <p class="home-sub">20道题 · 读懂你的爱</p>
   <button class="btn-primary" onclick="startQuiz()">开始测试</button>
   <div class="home-meta">约 3 分钟 · 10 种恋爱人格 · 专属结果图鉴</div>
 </section>
@@ -364,7 +375,7 @@
 <script>
 // ===== 口令列表（已售完可补充）=====
 const VALID_CODES = new Set([
-  "WC5VPU","K42ME4","P5U2M5","S2QLPE","TWNENU","A6TEAW","B4EETX","J9PBRS","C8UAD8","5UALT4",
+  "K42ME4","P5U2M5","S2QLPE","TWNENU","A6TEAW","B4EETX","J9PBRS","C8UAD8","5UALT4",
   "HXJBZZ","7SUE5G","RUB88U","KUJGY6","E498A4","UD56B9","U5MJED","CE8Y8T","6Z9P8L","SHFHTG",
   "TEQV9K","5DH486","YYZ8KM","UFHA8V","3NUC94","275MB9","5X44UF","GRSSL6","P7MB7D","79V4ZU",
   "HA4LVG","PHM5RS","5HMSAQ","ER9BRA","9AFSCG","6PLYAF","TP6QGV","JJRGWW","BVQR57","EN53YC",
@@ -389,7 +400,6 @@ const VALID_CODES = new Set([
 function unlock(){
   const val = document.getElementById('lock-input').value.trim().toUpperCase();
   if(VALID_CODES.has(val)){
-    // 设备绑定：把口令存在localStorage，这台设备以后免密
     localStorage.setItem('love_code', val);
     localStorage.setItem('love_unlocked', '1');
     showView('view-home');
